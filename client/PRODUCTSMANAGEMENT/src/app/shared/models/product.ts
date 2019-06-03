@@ -16,5 +16,5 @@ export class Topping {
     public minimumQuantity: number, public position: number, public options: Array<Option>) { }
 }
 export class Option {
-  constructor(public id: number, public name: string, public price: number) {}
+  constructor(public id: number, public name: string, public price: number) { }
 }

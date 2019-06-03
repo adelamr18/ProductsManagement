@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ProductsManagementService } from '../shared/services/products-management.service';
 
 @Component({
@@ -9,11 +9,11 @@ import { ProductsManagementService } from '../shared/services/products-managemen
 export class ProductsListComponent implements OnInit {
 
   constructor(public productsService: ProductsManagementService) { }
-  results: any;
+  products: any;
+  @Input() responseData: any;
   ngOnInit() {
     this.productsService.getAllProducts().subscribe((res) => {
-      this.results = res;
-      console.log(this.results, 'your mapped results')
+      this.products = res;
     });
   }
 
