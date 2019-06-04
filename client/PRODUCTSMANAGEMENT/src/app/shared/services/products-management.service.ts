@@ -12,7 +12,8 @@ import * as JsonQuery from 'jsonpath/jsonpath';
 })
 export class ProductsManagementService {
   products: Product[];
-
+  productId: any;
+  allProducts: any;
   constructor(private http: HttpClient) {
     this.products = new Array<Product>();
   }
@@ -41,18 +42,32 @@ export class ProductsManagementService {
       product.toppings = productToppings.map((el) => {
         const options = JsonQuery.value(el, JSON_PATHS.Product.options) || [];
         return new Topping(JsonQuery.value(el, JSON_PATHS.Product.id) || null,
-            JsonQuery.value(el, JSON_PATHS.Product.name) || null,
-            JsonQuery.value(el, JSON_PATHS.Product.quantity_maximum) || null,
-            JsonQuery.value(el, JSON_PATHS.Product.quantity_minimum) || null,
-            JsonQuery.value(el, JSON_PATHS.Product.position) || null,
-            options.map(op => new Option(
-              JsonQuery.value(op, JSON_PATHS.Product.id) || null,
-              JsonQuery.value(op, JSON_PATHS.Product.name) || null,
-              +JsonQuery.value(op, JSON_PATHS.Product.price) || 0)
-            ));
+          JsonQuery.value(el, JSON_PATHS.Product.name) || null,
+          JsonQuery.value(el, JSON_PATHS.Product.quantity_maximum) || null,
+          JsonQuery.value(el, JSON_PATHS.Product.quantity_minimum) || null,
+          JsonQuery.value(el, JSON_PATHS.Product.position) || null,
+          options.map(op => new Option(
+            JsonQuery.value(op, JSON_PATHS.Product.id) || null,
+            JsonQuery.value(op, JSON_PATHS.Product.name) || null,
+            +JsonQuery.value(op, JSON_PATHS.Product.price) || 0)
+          ));
       });
     }
     return product;
+  }
+  passSelectedId(productId) {
+    this.productId = productId;
+  }
+  getSelectedId() {
+    return this.productId;
+  }
+  returnAllProducts() {
+    this.getAllProducts().subscribe((res) => {
+      this.allProducts = res;
+    });
+  }
+  getProducts() {
+    return this.allProducts;
   }
 
 }

@@ -1,1 +1,7 @@
-
+.wrap-item{
+  flex-wrap: wrap;
+  display: flex;
+}
+.product-container{
+ padding: 15px;
+}

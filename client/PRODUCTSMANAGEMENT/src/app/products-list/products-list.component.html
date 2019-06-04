@@ -1,4 +1,6 @@
-<div class="cards" >
-  <app-product-card  *ngFor="let product of products"[data]="product" >
-  </app-product-card>
-</div>
+<div class="container">
+    <div class="cards wrap-item" >
+      <app-product-card *ngFor="let product of products"[data]="product" class="col-12 col-sm-6 product-container" >
+      </app-product-card>
+    </div>
+    </div>
