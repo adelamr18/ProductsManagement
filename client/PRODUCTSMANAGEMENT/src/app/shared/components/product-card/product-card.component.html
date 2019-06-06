@@ -10,7 +10,7 @@
                     <p> {{product.product}}
                     </p>
                   </div>
-                  <div class="col-12 col-md-4 p-md-0 product-price"> &euro;{{product.price}} per head</div>
+                  <div class="col-12 col-md-4 p-md-0 product-price"> &euro;{{product.price}} {{pricePerHead}}</div>
                 </div>
                 <div class="row">
                   <p class="col-12 description-text">{{product.productDescription}}
@@ -18,7 +18,7 @@
                 </div>
               </div>
             </div>
-            <button (click)="navigateToProductDetails(product.productId)" class="btn btn-primary btn-right">View</button>
+            <button (click)="navigateToProductDetails(product.productId)" class="btn btn-primary btn-right">{{viewButton}}</button>
           </div>
 
 

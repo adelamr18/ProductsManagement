@@ -22,4 +22,34 @@ export const JSON_PATHS = {
     optionsPrice: '$.price'
   }
 };
-
+export const shoppingCart = {
+  cart: 'Cart',
+  cartAmount: 'Amount:',
+};
+export const homeNav = {
+  home: 'Home'
+};
+export const pricePerHead = {
+  pricePerHead: 'per head'
+};
+export const buttons = {
+  viewButton: 'View',
+  addButton: 'Add'
+};
+export const alerts = {
+  select: 'Select up to ',
+  isRequired: 'is required',
+  mustSelect: 'You must select atleast',
+  toppings: 'toppings',
+  atLeast: 'Atleast',
+  errorText: 'Error!'
+};
+export const priceInformation = {
+  priceInformation: 'All prices are without VAT'
+};
+export const productDetailsHeadlines = {
+  extras: 'Extras',
+  toppings: 'Toppings',
+  persons: 'Persons',
+  specialInstructions: 'Special instructions'
+};

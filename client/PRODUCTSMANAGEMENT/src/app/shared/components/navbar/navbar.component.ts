@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductsManagementService } from '../../services/products-management.service';
+import { shoppingCart, homeNav } from '../../constants/defines'
+
 
 @Component({
   selector: 'app-navbar',
@@ -14,10 +16,14 @@ export class NavbarComponent implements OnInit {
   @Input() amountOfSelectedProducts: number;
   currentTempCount = 0;
   currentTempPrices = 0;
+  cartHome: string;
+  cartAmount: string;
+  homeNav: string;
 
   ngOnInit() {
     this.showCartTotalPrice();
     this.showCartSelectedProducts();
+    this.configureShoppingCartAndHomeNavigation();
   }
   navigateToProductsList() {
     this.router.navigate(['/']);
@@ -49,4 +55,15 @@ export class NavbarComponent implements OnInit {
     this.currentTempPrices = this.productsService.getcurrentTempPrice();
     this.productsService.parentNavbarTotalPrice = this.amountOfSelectedProducts;
   }
+
+  configureShoppingCartAndHomeNavigation() {
+    this.cartAmount = shoppingCart.cartAmount;
+    this.cartHome = shoppingCart.cart;
+    this.homeNav = homeNav.home;
+
+  }
+
+
+
+
 }

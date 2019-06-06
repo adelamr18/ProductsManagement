@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductsManagementService } from '../../services/products-management.service';
+import { buttons, pricePerHead, alerts, priceInformation, productDetailsHeadlines } from '../../constants/defines'
 
 
 @Component({
@@ -35,13 +36,47 @@ export class ProductDetailedContentComponent implements OnInit {
   curruentTotalPrice: number;
   isNotMinExtrasChecked = false;
   isNotMinToppingsChecked = false;
+  addButton: string;
+  pricePerHead: string;
+  selectText: string;
+  isRequiredText: string;
+  mustSelectText: string;
+  toppingsText: string;
+  priceInformation: string;
+  extrasText: string;
+  toppingsTextHeadline: string;
+  atLeastText: string;
+  errorText: string;
+  personsText: string;
+  specialInstructionsText: string;
+
+
+
 
 
 
   ngOnInit() {
     this.configureProductDetails();
+    this.configureProductDetailsText();
   }
+  configureProductDetailsText() {
+    this.addButton = buttons.addButton;
+    this.pricePerHead = pricePerHead.pricePerHead;
+    this.selectText = alerts.select;
+    this.isRequiredText = alerts.isRequired;
+    this.mustSelectText = alerts.mustSelect;
+    this.toppingsText = alerts.toppings;
+    this.priceInformation = priceInformation.priceInformation;
+    this.extrasText = productDetailsHeadlines.extras;
+    this.toppingsTextHeadline = productDetailsHeadlines.toppings;
+    this.atLeastText = alerts.atLeast;
+    this.errorText = alerts.errorText;
+    this.personsText = productDetailsHeadlines.persons;
+    this.specialInstructionsText = productDetailsHeadlines.specialInstructions;
 
+
+
+  }
   configureProductDetails() {
     if (this.data) {
       this.selectedtProduct = this.data;

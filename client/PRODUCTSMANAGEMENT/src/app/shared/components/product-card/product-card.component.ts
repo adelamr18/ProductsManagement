@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductsManagementService } from '../../services/products-management.service';
+import { pricePerHead, buttons } from '../../constants/defines'
 
 @Component({
   selector: 'app-product-card',
@@ -12,11 +13,21 @@ export class ProductCardComponent implements OnInit {
 
   @Input() data: any;
   product: any;
+  pricePerHead: string;
+  viewButton: string;
   ngOnInit() {
     this.product = this.data;
+    this.configureProductCards();
   }
   navigateToProductDetails(productId) {
     this.productsService.productId = productId;
     this.router.navigate(['/productDetail', productId]);
   }
+  configureProductCards() {
+    this.pricePerHead = pricePerHead.pricePerHead;
+    this.viewButton = buttons.viewButton;
+  }
+
+
+
 }

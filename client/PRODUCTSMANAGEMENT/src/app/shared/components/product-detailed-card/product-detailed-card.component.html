@@ -1,7 +1,6 @@
 <div class="row">
   <div class="col-12 header-container" *ngFor="let topping of selectedtProduct?.toppings">
     <h6>{{topping?.name}}</h6>
-    <span id="minimum-quantity">(Minimum order is: {{topping.minimumQuantity || 0}})</span>
   </div>
 </div>
 <hr id="seperation-line-title-with-description">
