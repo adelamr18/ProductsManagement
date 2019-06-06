@@ -1,0 +1,25 @@
+.header-container {
+  display: flex;
+}
+
+  #seperation-line-title-with-description {
+    color: red;
+  }
+
+  #minimum-quantity {
+    margin-left: 0.5rem;
+    margin-top: 0px;
+    font-size: 0.8rem;
+  }
+
+  h6 {
+    font-size: 0.9rem;
+  }
+
+  #seperation-line-title-with-description {
+    border-color: red;
+  }
+
+img {
+  max-width: 100%;
+}

@@ -5,3 +5,25 @@
 .product-container{
  padding: 15px;
 }
+.shopping-cart-container{
+  display: flex;
+  justify-content: flex-end;
+  margin-right:2.5rem;
+  margin-top: 1.5rem;
+}
+.fa-shopping-cart{
+  font-size: 30px;
+}
+#shopping-text{
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
+}
+#products-prices{
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+}
+#product-numbers{
+  right: 174px;
+  position: absolute;
+  top: 12px;
+}

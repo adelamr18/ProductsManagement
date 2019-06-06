@@ -14,6 +14,11 @@ export class ProductsManagementService {
   products: Product[];
   productId: any;
   allProducts: any;
+  totalProductsAmount = 0;
+  noOfProductsSelected = 1;
+  tempTotalProducts = 0;
+  parentNavbarNumberOfproducts = 0;
+  parentNavbarTotalPrice = 0;
   constructor(private http: HttpClient) {
     this.products = new Array<Product>();
   }
@@ -26,7 +31,7 @@ export class ProductsManagementService {
   }
 
   mapAllProducts(item: any): Product {
-    let product = new Product();
+    const product = new Product();
     product.productId = JsonQuery.value(item, JSON_PATHS.Product.product_id) || null;
     product.productImage = JsonQuery.value(item, JSON_PATHS.Product.Product_image) || null;
     product.product = JsonQuery.value(item, JSON_PATHS.Product.product) || null;
@@ -43,8 +48,8 @@ export class ProductsManagementService {
         const options = JsonQuery.value(el, JSON_PATHS.Product.options) || [];
         return new Topping(JsonQuery.value(el, JSON_PATHS.Product.id) || null,
           JsonQuery.value(el, JSON_PATHS.Product.name) || null,
-          JsonQuery.value(el, JSON_PATHS.Product.quantity_maximum) || null,
-          JsonQuery.value(el, JSON_PATHS.Product.quantity_minimum) || null,
+          JsonQuery.value(el, JSON_PATHS.Product.quantity_maximum) || 0,
+          JsonQuery.value(el, JSON_PATHS.Product.quantity_minimum) || 0,
           JsonQuery.value(el, JSON_PATHS.Product.position) || null,
           options.map(op => new Option(
             JsonQuery.value(op, JSON_PATHS.Product.id) || null,
@@ -69,5 +74,14 @@ export class ProductsManagementService {
   getProducts() {
     return this.allProducts;
   }
+
+  keepTrackOfTotalProductsPrice(price) {
+    this.tempTotalProducts += price;
+  }
+  getcurrentTempPrice() {
+    return this.tempTotalProducts;
+  }
+
+
 
 }

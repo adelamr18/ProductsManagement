@@ -1,0 +1,27 @@
+
+.fa-shopping-cart{
+  font-size: 30px;
+  margin-left: 1rem;
+}
+.shopping-cart-container{
+  margin-right: 1rem;
+  margin-top: 1rem;
+}
+#product-numbers{
+  position: absolute;
+  right: 156px;
+  top: 10px;
+}
+#shopping-text{
+  margin-left: 10px;
+}
+.navbar{
+  display: flex;
+  justify-content: space-between;
+}
+.navbar-brand{
+  font-weight: 500;
+}
+a{
+  cursor: pointer;
+}

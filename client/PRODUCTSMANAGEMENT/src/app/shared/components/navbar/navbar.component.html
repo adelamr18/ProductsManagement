@@ -1,0 +1,9 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a (click)="navigateToProductsList()" class="navbar-brand" >Home</a>
+    <span id = "product-numbers">{{ noOfSelectedProducts}}</span>
+    <div class="shopping-cart-container">
+        <i class="fa fa-shopping-cart"></i>
+        <span id="shopping-text">Cart</span>
+        <span id="total-cost-text"> Amount: {{amountOfSelectedProducts}} </span>
+      </div>
+  </nav>

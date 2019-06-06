@@ -1,3 +1,77 @@
-<p>
-  product-detailed-content works!
-</p>
+<div class="accordion" id="accordionExample" >
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <label>
+          Toppings
+        </label>
+        <span id="optional-toppings-number">Select up to {{toppingMaxNumber}} (Atleast {{minToppingsNumber || 0}} is required)</span>
+      </h2>
+      <span id="chevron-icon" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+        aria-controls="collapseOne">
+        <i class="fa fa-chevron-down"></i>
+      </span>
+    </div>
+    <div class="alert alert-danger" *ngIf="isNotMinToppingsChecked">
+        <strong>Error!   </strong>You must select atleast {{minToppingsNumber}} toppings
+      </div>
+    <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="form-check" *ngFor="let option of selectedtProduct?.toppings[0]?.options">
+        <input (change)="addAdditionalToppingsToPrice($event,option.price)" type="checkbox" class="form-check-input"
+          id="exampleCheck1">
+        <label class="form-check-label topping-name" for="exampleCheck1">{{option.name}}</label>
+        <label class="form-check-label" for="exampleCheck1">(+&euro;{{option.price}} per head )</label>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0">
+        <label>
+          Extras
+        </label>
+        <span id="optional-toppings-number">Select up to {{minToppingsNumber}} (Atleast {{minExtrasNumber}} is required)</span>
+      </h2>
+      <span id="chevron-icon" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+        aria-controls="collapseTwo">
+        <i class="fa fa-chevron-down"></i>
+      </span>
+    </div>
+    <div class="alert alert-danger" *ngIf="isNotMinExtrasChecked">
+        <strong>Error!   </strong>You must select atleast {{minExtrasNumber}} toppings
+      </div>
+    <div id="collapseTwo" class="collapse " aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="form-check" *ngFor="let option of selectedtProduct?.toppings[1]?.options">
+        <input (change)="addAdditionalToppingsToPrice($event,option.price)" type="checkbox" class="form-check-input"
+          id="exampleCheck1">
+        <label class="form-check-label topping-name" for="exampleCheck1">{{option.name}}</label>
+        <label class="form-check-label" for="exampleCheck1">(+&euro;{{option.price}} per head )</label>
+      </div>
+    </div>
+  </div>
+<div class="special-instructions-container">
+  <div class="special-instructions-title">
+    <h6>Special instructions</h6>
+    <textarea placeholder="Enter any special instructions if you have"   class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+</div>
+<hr id="seperation-line-special-instructions-with-price">
+<div class="price-with-add-persons-container">
+  <div class="price-container">
+    <span id="actual-price">&euro;{{curruentTotalPrice || selectedtProduct?.price}}</span>
+    <span id="actual-head-price">&euro;{{globalPrice || selectedtProduct?.price}} per head</span>
+    <div id="vat-description">
+      All prices are without VAT
+    </div>
+  </div>
+  <div class="persons-container">
+    <div class="persons-number">
+      <input (change)="checkNumberOfPeople()" [(ngModel)]="numberOfPersons" type="text" id="no-of-persons">
+      <span id="persons-text">Persons</span>
+      <span id="add-button">
+        <button [disabled]="checkButtonStatus()" (click)="addNumberOfPersonsToPrice()" class="btn btn-primary ">Add</button>
+      </span>
+    </div>
+  </div>
+</div>

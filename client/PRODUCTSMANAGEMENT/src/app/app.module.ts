@@ -9,6 +9,8 @@ import { ProductCardComponent } from './shared/components/product-card/product-c
 import { ProductDetailedCardComponent } from './shared/components/product-detailed-card/product-detailed-card.component';
 import { ProductDetailedContentComponent } from './shared/components/product-detailed-content/product-detailed-content.component';
 import { ProductsManagementService } from './shared/services/products-management.service';
+import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
 
 
@@ -23,12 +25,13 @@ import { ProductsManagementService } from './shared/services/products-management
     ProductDetailsComponent,
     ProductCardComponent,
     ProductDetailedCardComponent,
-    ProductDetailedContentComponent
+    ProductDetailedContentComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule, FormsModule
   ],
   providers: [ProductsManagementService],
   bootstrap: [AppComponent]

@@ -1,3 +1,7 @@
-<p>
-  product-details works!
-</p>
+<app-navbar [amountOfSelectedProducts]="amountOfSelectedProducts" [noOfSelectedProducts]="nofSelectedProducts" ></app-navbar>
+<div class="container col-md-6 offset-md-3">
+  <app-product-detailed-card [data]="filtertedProduct">
+  </app-product-detailed-card>
+  <app-product-detailed-content (productPriceChange)="onProductPriceChange($event)" (productChange)="onProductChange($event)"  [data]="filtertedProduct">
+  </app-product-detailed-content>
+</div>

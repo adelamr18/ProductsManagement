@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-product-detailed-card',
@@ -8,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class ProductDetailedCardComponent implements OnInit {
 
   constructor() { }
+  @Input() data: any;
+  selectedtProduct: any;
 
   ngOnInit() {
+    if (this.data) {
+      this.selectedtProduct = this.data;
+
+    }
   }
 
 }

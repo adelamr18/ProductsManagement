@@ -10,12 +10,16 @@ export class ProductsListComponent implements OnInit {
 
   constructor(public productsService: ProductsManagementService) { }
   products: any;
+  noOfProductsSelected = 0;
+  totalProductsPrice = 0;
   @Input() responseData: any;
   ngOnInit() {
     this.productsService.getAllProducts().subscribe((res) => {
       this.products = res;
     });
     this.productsService.returnAllProducts();
+    this.noOfProductsSelected = this.productsService.parentNavbarNumberOfproducts;
+    this.totalProductsPrice = this.productsService.parentNavbarTotalPrice;
   }
 
 }

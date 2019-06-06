@@ -1,6 +1,14 @@
+<div class="shopping-cart-container">
+  <i class="fa fa-shopping-cart"></i>
+  <span id = "product-numbers">{{noOfProductsSelected}}</span>
+  <span id="shopping-text"> Cart</span>
+  <span id="products-prices">Amount: {{totalProductsPrice }}</span>
+</div>
+
+
 <div class="container">
-    <div class="cards wrap-item" >
-      <app-product-card *ngFor="let product of products"[data]="product" class="col-12 col-sm-6 product-container" >
-      </app-product-card>
-    </div>
-    </div>
+  <div class="cards wrap-item">
+    <app-product-card *ngFor="let product of products" [data]="product" class="col-12 col-sm-6 product-container">
+    </app-product-card>
+  </div>
+</div>
