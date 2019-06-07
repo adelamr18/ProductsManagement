@@ -50,11 +50,6 @@ export class ProductDetailedContentComponent implements OnInit {
   personsText: string;
   specialInstructionsText: string;
 
-
-
-
-
-
   ngOnInit() {
     this.configureProductDetails();
     this.configureProductDetailsText();
@@ -73,9 +68,6 @@ export class ProductDetailedContentComponent implements OnInit {
     this.errorText = alerts.errorText;
     this.personsText = productDetailsHeadlines.persons;
     this.specialInstructionsText = productDetailsHeadlines.specialInstructions;
-
-
-
   }
   configureProductDetails() {
     if (this.data) {

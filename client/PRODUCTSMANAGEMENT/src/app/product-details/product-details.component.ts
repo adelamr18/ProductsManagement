@@ -10,7 +10,7 @@ import { ProductsManagementService } from '../shared/services/products-managemen
 })
 export class ProductDetailsComponent implements OnInit {
 
-  constructor(private Activatedroute: ActivatedRoute, private router: Router, public productsService: ProductsManagementService) { }
+  constructor( public productsService: ProductsManagementService) { }
   productId: any;
   selectedProductId: any;
   allProducts: any;
@@ -30,6 +30,7 @@ export class ProductDetailsComponent implements OnInit {
     this.selectedProductId = this.productsService.getSelectedId();
   }
   getSelectedProduct() {
+    debugger;
     if (this.allProducts) {
       this.allProducts.find(el => {
         if (el.productId === this.selectedProductId) {
@@ -49,6 +50,4 @@ export class ProductDetailsComponent implements OnInit {
       this.amountOfSelectedProducts = this.productsService.getcurrentTempPrice();
     }
   }
-
-
 }

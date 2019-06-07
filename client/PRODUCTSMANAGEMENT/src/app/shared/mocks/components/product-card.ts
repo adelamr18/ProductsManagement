@@ -1,28 +1,25 @@
-import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
-import { ProductCardComponent } from './product-card.component';
-import { Router } from '@angular/router';
-import { HttpClient, HttpHandler, HttpResponse } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 
-
-describe('ProductCardComponent', () => {
-  let component: ProductCardComponent;
-  let fixture: ComponentFixture<ProductCardComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ProductCardComponent], providers: [
-        {
-          provide: Router,
-          useClass: class { navigate = jasmine.createSpy('navigate'); }
-        },
-        HttpClient, HttpHandler
-      ]
-    })
-      .compileComponents();
-  }));
-  const data = [
+@Component({
+  selector: 'app-product-card',
+  template: `<div class="row">
+  <div class="col-12 header-container" *ngFor="let topping of selectedtProduct?.toppings">
+    <h6>{{topping?.name}}</h6>
+  </div>
+</div>
+<hr id="seperation-line-title-with-description">
+<div class="row image-with-description-container">
+  <div class="col-12 col-md-4  product-detail-image">
+    <img src="{{selectedtProduct?.productImage}}">
+  </div>
+  <div class="col-12 col-md-8  product-detail-description">
+    <p>{{selectedtProduct?.productDescriptionLong}}</p>
+  </div>
+</div>
+<hr id ="seperation-line-title-with-description">`
+})
+export class ProductCardMockComponent {
+  @Input() data =  [
     {
       product_id: '123456',
       Product_image: 'https://via.placeholder.com/500x300/f98e71/fff&text=Image',
@@ -84,24 +81,8 @@ describe('ProductCardComponent', () => {
         }
       ]
     },
-  ];
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ProductCardComponent);
-    component = fixture.componentInstance;
-    component.data = data;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-  it('should expect to call configureProductCards when component executes ngOnInit lifecycle hook ', () => {
-    const configureProductCards = spyOn(component, 'configureProductCards');
-    component.ngOnInit();
-    expect(configureProductCards).toHaveBeenCalled();
-  });
-  it('should expect to navigate to productDetail page when navigateToProductDetails is called  ', (inject([Router], (router: Router) => {
-    component.navigateToProductDetails(123);
-    expect(router.navigate).toHaveBeenCalledWith(['/productDetail', 123]);
-  })));
-});
+  ]
+  product: any;
+  pricePerHead: string;
+  viewButton: string;
+}

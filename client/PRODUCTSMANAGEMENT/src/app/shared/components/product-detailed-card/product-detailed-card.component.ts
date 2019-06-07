@@ -14,7 +14,6 @@ export class ProductDetailedCardComponent implements OnInit {
   ngOnInit() {
     if (this.data) {
       this.selectedtProduct = this.data;
-
     }
   }
 
