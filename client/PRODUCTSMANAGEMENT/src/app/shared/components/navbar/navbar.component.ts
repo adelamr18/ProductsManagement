@@ -38,6 +38,7 @@ export class NavbarComponent implements OnInit {
       this.amountOfSelectedProducts = this.amountOfSelectedProducts;
     }
   }
+
   showCartSelectedProducts() {
     this.currentTempCount = this.productsService.noOfProductsSelected - 1;
     if (this.currentTempCount > this.noOfSelectedProducts) {

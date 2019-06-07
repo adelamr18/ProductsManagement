@@ -1,5 +1,17 @@
-# PRODUCTSMANAGEMENT
+# Technology used
+For this implemented task Angular was used with Bootstrap 4.Also Karma and Jasmine were used for unit testing purposes.
 
+#To run docker file locally (if you are using Windows)
+Make sure that docker toolboox is running before attempting to run the docker file locally
+1-right click on command Palette in DockerFile then select Docker:Build Image if Docker extension is installed
+otherwise type : docker build --rm -f "DockerFile" -t productsmanagement:(the name you would like to call the image)
+2-then type in vs code terminal while on DockerFile : docker run -p 80:80 productsmanagement:(the name you called it)
+3- open 192.168.99.100 in chrome
+
+#To run the automated code that deploys the app to aws 
+1-navigate to scripts then deploy.js then type node deploy.js in the the vscode erminal
+
+# PRODUCTSMANAGEMENT
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
 
 ## Development server

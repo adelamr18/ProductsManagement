@@ -72,6 +72,7 @@ export class ProductDetailedContentComponent implements OnInit {
     this.specialInstructionsText = productDetailsHeadlines.specialInstructions;
     this.toppingTabId = tabsSeperatingId.toppingTab;
   }
+
   configureProductDetails() {
     if (this.data) {
       this.selectedtProduct = this.data;
@@ -89,6 +90,14 @@ export class ProductDetailedContentComponent implements OnInit {
     });
     return this.optionsArray;
   }
+    /**
+   *This is the addAdditionalToppingsToPrice function
+   *that calculates the total price of all products and the price
+   of each head when a product extra or topping are checked by the user
+   @price represents the price of the checked topping or extra
+
+   */
+
   addAdditionalToppingsToPrice(event, price) {
     if (event.path[2].id.toString() === this.toppingTabId) {
       this.islickedOnToppingsTab = true;
@@ -137,6 +146,7 @@ export class ProductDetailedContentComponent implements OnInit {
     this.showErrorAlertForToppings();
     this.showErrorAlertForExtras();
   }
+
   addNumberOfPersonsToPrice() {
     this.typedNumber = parseInt(this.numberOfPersons, 10);
     if (this.typedNumber !== 0) {
@@ -188,6 +198,10 @@ export class ProductDetailedContentComponent implements OnInit {
   navigateToProductsList() {
     this.router.navigate(['/']);
   }
+    /**
+   *This is the showErrorAlertForToppings function
+   *that shows or hides alerts related to the toppings tab
+   */
   showErrorAlertForToppings() {
     if (this.minToppingsNumber > 0) {
       if (this.minOptionCount >= this.minToppingsNumber) {
@@ -197,6 +211,10 @@ export class ProductDetailedContentComponent implements OnInit {
       this.isNotMinToppingsChecked = false;
     }
   }
+      /**
+   *This is the showErrorAlertForToppings function
+   *that shows or hides alerts related to the Extras tab
+   */
   showErrorAlertForExtras() {
     if (this.minOptionCount === 0 && !this.islickedOnToppingsTab) {
       this.isNotMinExtrasChecked = true;

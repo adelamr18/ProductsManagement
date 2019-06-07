@@ -23,6 +23,11 @@ export class ProductCardComponent implements OnInit {
     this.productsService.productId = productId;
     this.router.navigate(['/productDetail', productId]);
   }
+   /**
+   *This is the configureProductCards function
+   *that sets the correct text to be displayed within the card contaning the retrieved product
+   from the api response
+   */
   configureProductCards() {
     this.pricePerHead = pricePerHead.pricePerHead;
     this.viewButton = buttons.viewButton;

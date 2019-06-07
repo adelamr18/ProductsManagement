@@ -27,10 +27,21 @@ export class ProductsListComponent implements OnInit {
     this.configureShoppingCart();
   }
 
+  /**
+   *This is the configureAllProducts function
+   *that passes selectedproducts and total price of selected products
+   from the productsDetails page to the productsList page
+   */
   configureAllProducts() {
     this.noOfProductsSelected = this.productsService.parentNavbarNumberOfproducts;
     this.totalProductsPrice = this.productsService.parentNavbarTotalPrice;
   }
+
+  /**
+   *This is the configureShoppingCart function
+   *that  sets the correct text to be displayed beside the
+   shopping cart icon
+   */
   configureShoppingCart() {
     this.cartAmount = shoppingCart.cartAmount;
     this.cartHome = shoppingCart.cart;
