@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductsManagementService } from '../../services/products-management.service';
-import { buttons, pricePerHead, alerts, priceInformation, productDetailsHeadlines } from '../../constants/defines'
+import { buttons, pricePerHead, alerts, priceInformation, productDetailsHeadlines, tabsSeperatingId } from '../../constants/defines'
 
 
 @Component({
@@ -49,7 +49,9 @@ export class ProductDetailedContentComponent implements OnInit {
   errorText: string;
   personsText: string;
   specialInstructionsText: string;
-
+  islickedOnToppingsTab = false;
+  toppingTabId: string;
+  isClickedOnAnyChecbox = false;
   ngOnInit() {
     this.configureProductDetails();
     this.configureProductDetailsText();
@@ -68,6 +70,7 @@ export class ProductDetailedContentComponent implements OnInit {
     this.errorText = alerts.errorText;
     this.personsText = productDetailsHeadlines.persons;
     this.specialInstructionsText = productDetailsHeadlines.specialInstructions;
+    this.toppingTabId = tabsSeperatingId.toppingTab;
   }
   configureProductDetails() {
     if (this.data) {
@@ -87,13 +90,21 @@ export class ProductDetailedContentComponent implements OnInit {
     return this.optionsArray;
   }
   addAdditionalToppingsToPrice(event, price) {
+    if (event.path[2].id.toString() === this.toppingTabId) {
+      this.islickedOnToppingsTab = true;
+    } else {
+      this.islickedOnToppingsTab = false;
+    }
     this.isNotMinToppingsChecked = false;
     this.isNotMinExtrasChecked = false;
     this.isClickedOnTopping = true;
     if (event.target.checked) {
+      this.isClickedOnAnyChecbox = true;
       this.toppingsSum = price;
       this.globalPrice = this.globalPrice + this.toppingsSum;
-      this.minOptionCount++;
+      if (this.minExtrasNumber > 0 && !this.islickedOnToppingsTab) {
+        this.minOptionCount++;
+      }
       if (!this.isFirstTypeChecked) {
         this.globalPrice = this.globalPrice + this.selectedtProduct.price;
         this.isFirstTypeChecked = true;
@@ -112,7 +123,9 @@ export class ProductDetailedContentComponent implements OnInit {
         this.globalPrice = this.globalPrice - this.toppingsSum;
         this.totalPrice = this.globalPrice * this.typedNumber;
         this.productsService.totalProductsAmount = this.totalPrice;
-        this.minOptionCount--;
+        if (this.minExtrasNumber > 0 && !this.islickedOnToppingsTab) {
+          this.minOptionCount--;
+        }
         this.curruentTotalPrice = this.totalPrice;
         this.productsService.totalProductsAmount = this.curruentTotalPrice;
         const body = {
@@ -121,7 +134,8 @@ export class ProductDetailedContentComponent implements OnInit {
         };
         this.productPriceChange.emit(body);
       }
-    this.showErrorAlert();
+    this.showErrorAlertForToppings();
+    this.showErrorAlertForExtras();
   }
   addNumberOfPersonsToPrice() {
     this.typedNumber = parseInt(this.numberOfPersons, 10);
@@ -153,33 +167,51 @@ export class ProductDetailedContentComponent implements OnInit {
   }
 
   checkNumberOfPeople() {
-    if (this.numberOfPersons) {
+    if (parseInt(this.numberOfPersons, 10) > 0) {
       this.isNumberofPeopleChosen = true;
+    } else {
+      this.isNumberofPeopleChosen = false;
     }
   }
 
   checkButtonStatus() {
-    if (this.isNumberofPeopleChosen && (!this.isNotMinExtrasChecked && !this.isNotMinToppingsChecked)) {
-      return false;
+    if (this.isClickedOnAnyChecbox) {
+      if (this.isNumberofPeopleChosen && (!this.isNotMinExtrasChecked && !this.isNotMinToppingsChecked)) {
+        return false;
+      }
     } else {
       return true;
     }
+    return true;
   }
 
   navigateToProductsList() {
     this.router.navigate(['/']);
   }
-  showErrorAlert() {
+  showErrorAlertForToppings() {
     if (this.minToppingsNumber > 0) {
       if (this.minOptionCount >= this.minToppingsNumber) {
         this.isNotMinToppingsChecked = true;
       }
+    } else {
+      this.isNotMinToppingsChecked = false;
+    }
+  }
+  showErrorAlertForExtras() {
+    if (this.minOptionCount === 0 && !this.islickedOnToppingsTab) {
+      this.isNotMinExtrasChecked = true;
     }
     if (this.minExtrasNumber > 0) {
       if (this.minOptionCount > 1) {
         this.isNotMinExtrasChecked = false;
       } else {
-        if (this.minOptionCount >= this.minExtrasNumber) {
+        if (this.minOptionCount === 1) {
+          this.isNotMinExtrasChecked = false;
+        }
+        if (this.minOptionCount > this.minExtrasNumber) {
+          this.isNotMinExtrasChecked = true;
+        }
+        if (this.minOptionCount === 0) {
           this.isNotMinExtrasChecked = true;
         }
       }

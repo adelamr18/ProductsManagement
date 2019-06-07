@@ -30,7 +30,6 @@ export class ProductDetailsComponent implements OnInit {
     this.selectedProductId = this.productsService.getSelectedId();
   }
   getSelectedProduct() {
-    debugger;
     if (this.allProducts) {
       this.allProducts.find(el => {
         if (el.productId === this.selectedProductId) {

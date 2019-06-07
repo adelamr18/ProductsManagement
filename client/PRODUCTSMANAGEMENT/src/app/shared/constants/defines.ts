@@ -53,3 +53,6 @@ export const productDetailsHeadlines = {
   persons: 'Persons',
   specialInstructions: 'Special instructions'
 };
+export const tabsSeperatingId = {
+  toppingTab: 'collapseOne'
+};

@@ -39,7 +39,7 @@
       </span>
     </div>
     <div class="alert alert-danger" *ngIf="isNotMinExtrasChecked">
-        <strong>{{errorText}}   </strong>{{atLeastText}} {{minExtrasNumber}} {{toppingsText}}
+        <strong>{{errorText}}   </strong>{{mustSelectText}} {{minExtrasNumber}} {{toppingsText}}
       </div>
     <div id="collapseTwo" class="collapse " aria-labelledby="headingTwo" data-parent="#accordionExample">
       <div class="form-check" *ngFor="let option of selectedtProduct?.toppings[1]?.options">
