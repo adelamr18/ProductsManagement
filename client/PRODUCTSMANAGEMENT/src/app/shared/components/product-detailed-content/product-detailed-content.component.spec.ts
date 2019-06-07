@@ -24,8 +24,7 @@ describe('ProductDetailedContentComponent', () => {
     })
       .compileComponents();
   }));
-  const data =
-  {
+  const data = {
     product_id: '123456',
     Product_image: 'https://via.placeholder.com/500x300/f98e71/fff&text=Image',
     product: 'Caterwings Breakfast Package: Bagels and OJ',
@@ -85,7 +84,7 @@ describe('ProductDetailedContentComponent', () => {
         ]
       }
     ]
-  }
+  };
   beforeEach(() => {
     fixture = TestBed.createComponent(ProductDetailedContentComponent);
     component = fixture.componentInstance;
@@ -109,9 +108,13 @@ describe('ProductDetailedContentComponent', () => {
       const event = {
         target: {
           checked: true
-        }
+        },
+        path: [{
+        }, {}, { id: 'collapseOne' }
+        ]
       };
       component.addAdditionalToppingsToPrice(event, 18);
+      expect(component.islickedOnToppingsTab).toBeTruthy();
       expect(component.isNotMinToppingsChecked).toBeFalsy();
       expect(component.isNotMinExtrasChecked).toBeFalsy();
       expect(component.isClickedOnTopping).toBeTruthy();
@@ -122,7 +125,10 @@ describe('ProductDetailedContentComponent', () => {
       const event = {
         target: {
           checked: false
-        }
+        },
+        path: [{
+        }, {}, { id: 'collapseOne' }
+        ]
       };
       component.addAdditionalToppingsToPrice(event, 18);
       expect(component.toppingsSum).toEqual(18);
@@ -142,10 +148,22 @@ describe('ProductDetailedContentComponent', () => {
     const event = {
       target: {
         checked: true
-      }
+      },
+      path: [{
+      }, {}, { id: 'collapseOne' }
+      ]
     };
     component.addAdditionalToppingsToPrice(event, 18);
     expect(component.totalPrice).toBeTruthy();
   })));
 
+  it(`should expect to set the flag for showing an alert to true for the topping tab is if the required number of
+  toppings tabs are not selected by the user
+  `, () => {
+      component.minToppingsNumber = 1;
+      component.minOptionCount = 2;
+      component.minToppingsNumber = 1;
+      component.showErrorAlertForToppings();
+      expect(component.isNotMinToppingsChecked).toBeTruthy();
+    });
 });

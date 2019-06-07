@@ -5,8 +5,8 @@ const path = require("path");
 
 
 const config = {
-  s3BucketName: 'your.s3.bucket.name',
-  folderPath: '../dist' // path relative script's location
+  s3BucketName: 'products-bucket',
+  folderPath: './'
 };
 
 // initialise S3 client
@@ -42,7 +42,6 @@ function walk(rootdir, callback, subdir) {
           Body: fileContent,
           ContentType: mimeType
         }
-
         // upload file to S3
         s3.putObject(s3Obj, (res) => {
           console.log(`Successfully uploaded '${filepath}' with MIME type '${mimeType}'`)

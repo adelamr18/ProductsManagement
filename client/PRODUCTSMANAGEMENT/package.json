@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "deploy": "node ./scripts/deploy.js",
-    "predeploy": "ng build -prod -aot",
+    "predeploy": "ng build --prod --aot",
     "compodoc": "compodoc -p tsconfig.json"
   },
   "private": true,

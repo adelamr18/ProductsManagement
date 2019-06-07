@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-product-card',
@@ -19,7 +19,14 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 <hr id ="seperation-line-title-with-description">`
 })
 export class ProductCardMockComponent {
-  @Input() data =  [
+
+  selectedtProduct = {
+    productDescriptionLong: ' ',
+    productImage: '',
+    toppings: ''
+  };
+
+  @Input() data = [
     {
       product_id: '123456',
       Product_image: 'https://via.placeholder.com/500x300/f98e71/fff&text=Image',
@@ -81,7 +88,7 @@ export class ProductCardMockComponent {
         }
       ]
     },
-  ]
+  ];
   product: any;
   pricePerHead: string;
   viewButton: string;
